@@ -17,13 +17,19 @@ public class OrderedList_inArraySlots
      */
     public OrderedList_inArraySlots
             ( ArrayList<Integer> unordered) {
-        this();  // improve, for optional extra education
-
-        // test champIndex, for incremental development
         int nextLargerAt = champIndex( unordered);
         System.out.println(
             "smallest element is at index " + nextLargerAt
-          + " and has the value " + unordered.get( nextLargerAt));
+            + " and has the value " + unordered.get( nextLargerAt));
+        list_iAS = new ArrayList<Integer>();
+        int unorderedSize = unordered.size();
+        while (unorderedSize - 1 > list_iAS.size()){
+            int targetIndex = champIndex( unordered);
+            list_iAS.add(unordered.get(targetIndex));
+            unordered.remove(targetIndex);
+        }
+        list_iAS.add(unordered.get(0));
+        // test champIndex, for incremental development
     }
 
 
@@ -37,9 +43,7 @@ public class OrderedList_inArraySlots
         Integer smallest = challengers.get(0);
         int indexOfSmallest = 0;
         for (int index = 0; index < challengers.size() ; index++){
-            if (challengers.get(index) != null
-                && challengers.get(index) < smallest
-               ){
+            if (challengers.get(index) < smallest){
                 smallest = challengers.get(index);
                 indexOfSmallest = index;
                 }
